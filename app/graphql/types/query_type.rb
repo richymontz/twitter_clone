@@ -10,5 +10,13 @@ module Types
       authenticate!
       current_user
     end
+
+    field :user_info, Types::UserType, null: false do
+      argument :user_id, Integer, required: true
+    end
+
+    def user_info(user_id:)
+      User.find_by(id: user_id)
+    end
   end
 end

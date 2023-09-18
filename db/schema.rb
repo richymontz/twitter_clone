@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_18_180058) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_18_224013) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "followers", force: :cascade do |t|
+    t.integer "follower_user_id"
+    t.integer "following_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follower_user_id"], name: "index_followers_on_follower_user_id"
+    t.index ["following_user_id"], name: "index_followers_on_following_user_id"
+  end
+
+  create_table "followings", force: :cascade do |t|
+    t.integer "from_user_id"
+    t.integer "to_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_user_id"], name: "index_followings_on_from_user_id"
+    t.index ["to_user_id"], name: "index_followings_on_to_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "from_user_id"
+    t.integer "to_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_user_id"], name: "index_follows_on_from_user_id"
+    t.index ["to_user_id"], name: "index_follows_on_to_user_id"
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.text "body"
@@ -29,6 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_18_180058) do
     t.string "full_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 

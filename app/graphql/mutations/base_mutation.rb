@@ -13,7 +13,7 @@ module Mutations
       if current_user
         true
       else
-        raise GraphQL::ExecutionError, "Authentication failed, you must be signed in!"
+        raise GraphQL::ExecutionError, "You don't have permessions to access"
       end 
     end
   end
