@@ -71,4 +71,7 @@ group :development do
   # gem "spring"
 
   gem "graphiql-rails", github: 'rmosolgo/graphiql-rails'
+  gem "rack-cors", "~> 2.0"
 end
+
+

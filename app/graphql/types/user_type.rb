@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require_relative '../loaders/association_loader.rb'
+
 module Types
   class UserType < Types::BaseObject
     field :username, String
