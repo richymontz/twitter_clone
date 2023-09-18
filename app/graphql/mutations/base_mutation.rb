@@ -4,5 +4,17 @@ module Mutations
     field_class Types::BaseField
     input_object_class Types::BaseInputObject
     object_class Types::BaseObject
+
+    def current_user
+      context[:current_user]
+    end
+
+    def authenticate!
+      if current_user
+        true
+      else
+        raise GraphQL::ExecutionError, "Authentication failed, you must be signed in!"
+      end 
+    end
   end
 end
