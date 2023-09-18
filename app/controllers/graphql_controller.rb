@@ -9,8 +9,7 @@ class GraphqlController < ApplicationController
     query = params[:query]
     operation_name = params[:operationName]
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: lookpup_current_user_from_token
     }
     result = TwitterCloneSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -20,6 +19,12 @@ class GraphqlController < ApplicationController
   end
 
   private
+
+  def lookpup_current_user_from_token
+    header = request.headers["AUTHORIZATION"]
+    token = header&.gsub(/\AToken\s/, "")
+    GlobalID::Locator.locate_signed(token, for: 'graphql')
+  end
 
   # Handle variables in form data, JSON body, or a blank value
   def prepare_variables(variables_param)
