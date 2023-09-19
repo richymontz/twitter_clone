@@ -7,11 +7,11 @@ module Mutations
     end
 
     def resolve(body:)
-      tweet = Tweet.create(body: body, user: current_user)
-      if tweet
+      tweet = Tweet.new(body: body, user: current_user)
+      if tweet.save
         tweet
       else
-        raise GraphQL::ExecutionError.new(e.errors.full_messages)
+        raise GraphQL::ExecutionError.new(tweet.errors.full_messages)
       end
     end
   end
