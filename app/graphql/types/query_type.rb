@@ -12,11 +12,11 @@ module Types
     end
 
     field :user_info, Types::UserType, null: false do
-      argument :user_id, Integer, required: true
+      argument :username, String, required: true
     end
 
-    def user_info(user_id:)
-      User.find_by(id: user_id)
+    def user_info(username:)
+      User.find_by(username: username)
     end
   end
 end

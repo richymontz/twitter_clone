@@ -75,3 +75,5 @@ group :development do
 end
 
 
+
+gem "graphql-batch", "~> 0.5.3"
