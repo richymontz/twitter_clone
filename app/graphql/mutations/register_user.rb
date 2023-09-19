@@ -1,7 +1,5 @@
 module Mutations
   class RegisterUser < BaseMutation
-    # field :user, type: Types::UserType, null: false
-
     argument :username, String, required: true
     argument :email, String, required: true
     argument :password, String, required: true

@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   def related_users
     ids = Follow.has_user_id(id).pluck(:from_user_id, :to_user_id).flatten.uniq
-    self.class.where("id IN (?)", ids)
+    self.class.where("id IN (?)", ids).order(:full_name, :username)
   end
 
   private
