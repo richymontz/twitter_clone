@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tweet do
-    body { "MyText" }
-    user { nil }
+    body { Faker::Lorem.paragraph }
+    user { create(:user) }
   end
 end
