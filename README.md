@@ -1,24 +1,41 @@
-# README
+# Twitter Clone App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Twitter Clone App is a social media application designed to replicate the core features and functionality of the popular platform Twitter. It allows users to post short messages or "tweets," follow other users 
 
-Things you may want to cover:
+# Initial Setup
 
-* Ruby version
+After pull this repo you should run these commandas:
 
-* System dependencies
+install gems:
+```bash
+bundle install
+```
+After insttall gems you can execute these ones to prepare the app:
 
-* Configuration
+```bash
+rails db:preapare
+#OR
+rails db:create
+rails db:migrate
+rails db:seed
+```
+Run the server
 
-* Database creation
+```bash
+rails s -p 3000
+```
 
-* Database initialization
+Go to http://localhost:3000/graphiql to see the Graphiql work page
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## RSpec
 
-* Deployment instructions
+run specs 
+```bash
+rspec spec/
+```
 
-* ...
+
+## NOTE
+
+You should run the rails app in port 3000

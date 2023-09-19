@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :tweets
+  has_many :tweets, dependent: :destroy
   has_many :following_me, class_name: 'Follow',foreign_key: 'to_user_id'  
   has_many :my_follows, class_name: 'Follow', foreign_key: 'from_user_id'  
   has_many :followers, class_name: 'User', through: :following_me
