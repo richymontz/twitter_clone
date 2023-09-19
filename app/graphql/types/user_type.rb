@@ -27,8 +27,8 @@ module Types
     end
 
     def tweets
-      AssociationLoader.for(object.class, :tweets).load(object).then do |record|
-        record
+      AssociationLoader.for(object.class, :tweets).load(object).then do |tweets|
+        tweets.sort_by{ |tweet| -tweet.created_at.to_i }
       end
     end
   end
