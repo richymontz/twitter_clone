@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   attr_accessor :token
 
+  scope :follow_ids, ->(user_id) {
+    Follow.has_user_id(user_id).pluck(:from_user_id, :to_user_id).flatten.uniq
+  }
+
   has_secure_password
 
   validates :username, presence: true
@@ -17,8 +21,13 @@ class User < ApplicationRecord
   before_create :default_avatar
 
   def related_users
-    ids = Follow.has_user_id(id).pluck(:from_user_id, :to_user_id).flatten.uniq
+    ids = self.class.follow_ids(id)
     self.class.where("id IN (?)", ids).order(:full_name, :username)
+  end
+
+  def feed
+    ids = self.class.follow_ids(id)
+    Tweet.where("user_id in (?)", ids).order(created_at: :desc)
   end
 
   private

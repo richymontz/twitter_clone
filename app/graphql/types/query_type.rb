@@ -18,5 +18,11 @@ module Types
     def user_info(username:)
       User.find_by(username: username)
     end
+
+    field :feed, [Types::TweetType], null: false ,
+      description: "Retrieve user feed"
+    def feed
+      current_user.feed
+    end
   end
 end

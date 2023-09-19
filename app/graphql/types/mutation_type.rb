@@ -1,6 +1,7 @@
 module Types
   class MutationType < Types::BaseObject
     #Follow mutation
+    field :unfollow_user, Types::FollowType, mutation: Mutations::UnfollowUser
     field :follow_user, Types::FollowType, mutation: Mutations::FollowUser
 
     #Tweets mutations

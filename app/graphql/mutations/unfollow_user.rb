@@ -1,5 +1,5 @@
 module Mutations
-  class FollowUser < BaseMutation
+  class UnfollowUser < BaseMutation
     argument :to_id, Integer, required: true
     
     def ready?(**args)
@@ -7,9 +7,9 @@ module Mutations
     end
 
     def resolve(to_id:)
-      follow = Follow.new(from_user_id: current_user.id, to_user_id: to_id)
+      follow = Follow.find_by(from_user_id: current_user.id, to_user_id: to_id)
   
-      if follow.save
+      if follow.delete
         follow
       else
         raise GraphQL::ExecutionError.new(follow.errors.full_messages)
