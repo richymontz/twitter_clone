@@ -2,6 +2,7 @@
 
 module Types
   class UserType < Types::BaseObject
+    field :id, Integer
     field :username, String
     field :email, String
     field :full_name, String

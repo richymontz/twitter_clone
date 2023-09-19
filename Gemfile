@@ -50,6 +50,7 @@ gem "bootsnap", require: false
 
 
 gem "graphql", "~> 2.1"
+gem "graphql-batch", "~> 0.5.3"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -73,7 +74,3 @@ group :development do
   gem "graphiql-rails", github: 'rmosolgo/graphiql-rails'
   gem "rack-cors", "~> 2.0"
 end
-
-
-
-gem "graphql-batch", "~> 0.5.3"
